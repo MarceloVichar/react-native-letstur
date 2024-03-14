@@ -11,7 +11,8 @@ O aplicativo de vendas do Letstur é uma das aplicações do Letstur, sistema de
 - [ ] Cancelamento de venda não confirmada via admin
 
 ## Protótipos de tela
-Em breve
+
+![Protótipo de telas](prototipo.png)
 
 ## Modelagem do banco de dados
 
