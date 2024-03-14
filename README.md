@@ -12,7 +12,7 @@ O aplicativo de vendas do Letstur é uma das aplicações do Letstur, sistema de
 
 ## Protótipos de tela
 
-![Protótipo de telas](prototipo.png)
+![Protótipo de telas](docs/prototipo.png)
 
 ## Modelagem do banco de dados
 
