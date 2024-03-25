@@ -3,6 +3,24 @@
 ## Sobre o app
 O aplicativo de vendas do Letstur é uma das aplicações do Letstur, sistema de controle de agências de passeios turísticos. O seu foco inicialmente é nos operadores das agências contratantes do serviço. Através do aplicativo de vendas, será possível visualizar eventos próximos e realizar vendas de vouchers para os eventos.
 
+## Como rodar o projeto
+
+Primeiramente, se você ainda não tem o Node e Yarn instalados, acompanhe o [tutorial de instalação](https://docs.google.com/document/d/19-0HcZK2Jd_CDPh7jDLcqdaBCVfxMNwam1U8Sbfv5aw/edit).
+
+Clone o repositório atual. Se você não sabe como fazer isso, acompanhe o [tutorial oficial](https://docs.github.com/pt/repositories/creating-and-managing-repositories/cloning-a-repository) do GitHub.
+
+Em um terminal, na pasta do respositório clonado, rode o seguintes comandos:
+
+```bash
+$> cd project/
+
+// Se você usa android
+$> yarn android
+
+// Se você usa IOS
+$> yarn ios
+```
+
 ## Funcionalidades
 - [ ] Autenticação (Login de operadores cadastrados via admin)
 - [ ] Visualização de eventos próximos e seus detalhes
