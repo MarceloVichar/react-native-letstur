@@ -1,26 +1,21 @@
-import React, {useEffect} from "react";
-import {ImageBackground, Text, View} from "react-native";
-import {router} from "expo-router";
-import {ThemeProvider} from "@rneui/themed";
+import React from "react";
+import {Image, ImageBackground, View} from "react-native";
+import LoginForm from "../components/auth/LoginForm";
 
-export default function index() {
-    useEffect(() => {
-        setTimeout(() => {
-            router.replace('/auth/login');
-        }, 100);
-    }, []);
-
+export default function Index() {
     return (
-        <ThemeProvider>
         <View className="flex-1">
             <ImageBackground
                 source={require("../assets/login-background.jpg")}
                 resizeMode="cover"
-                className="flex-1 justify-center items-center"
+                className="flex-1 justify-center items-center px-4"
             >
-                <Text className="text-7xl text-red-500">inicio</Text>
+                <Image source={require("../assets/logo.png")} resizeMode="contain"
+                       className="w-32 h-auto"/>
+                <View className="w-full bg-base-200 p-4 rounded-lg">
+                    <LoginForm/>
+                </View>
             </ImageBackground>
         </View>
-            </ThemeProvider>
     );
 }

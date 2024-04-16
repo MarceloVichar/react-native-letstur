@@ -9,7 +9,7 @@ export default function LoginForm() {
             <Input placeholder="Digite seu email" label="Email" className="w-full" leftIcon={<Icon name="email"/>}/>
             <Input placeholder="Digite sua senha" label="Senha" secureTextEntry={true} className="w-full"
                    leftIcon={<Icon name="password"/>}/>
-            <Button radius={"sm"} type="solid" color="primary" onPress={() => router.push('/operator/events')}>
+            <Button radius={"sm"} type="solid" color="primary" onPress={() => router.push('/(auth)/(events)')}>
                 Entrar
             </Button>
         </View>

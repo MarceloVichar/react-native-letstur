@@ -1,10 +1,10 @@
 import React from "react";
 import {Text, View} from "react-native";
 
-export default function Events() {
+export default function Sales() {
     return (
         <View className="flex-1">
-            <Text>Eventos</Text>
+            <Text>Vendas</Text>
         </View>
     );
 }
