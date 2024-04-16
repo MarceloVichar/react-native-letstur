@@ -3,10 +3,11 @@ import React from 'react';
 import { ScrollView, View } from 'react-native';
 
 import EventCard from '../../../components/events/EventCard';
+import { EventData } from '../../../data/EventData';
 import EventsMock from '../../../mocks/EventsMock';
 
 export default function Events() {
-  const events = EventsMock;
+  const events: EventData[] = EventsMock;
 
   return (
     <View className="flex-1">

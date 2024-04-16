@@ -42,7 +42,7 @@ export default function OperatorArea() {
         }}
       />
       <Drawer.Screen
-        name="sales/index"
+        name="(sales)"
         options={{
           drawerLabel: 'Vendas',
           title: 'Vendas',
