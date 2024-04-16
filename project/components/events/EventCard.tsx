@@ -3,15 +3,20 @@ import { router } from 'expo-router';
 import React from 'react';
 import { Text } from 'react-native';
 
+import { EventData } from '../../data/EventData';
 import { formatCurrency, formatDateTime } from '../../utils/helpers';
 
-export default function EventCard({ event }: any) {
+interface EventCardProps {
+  event: EventData;
+}
+
+export default function EventCard({ event }: EventCardProps) {
   const eventInfos = [
     { label: 'Partida', value: formatDateTime(event?.departureDateTime) },
     { label: 'Retorno', value: formatDateTime(event?.arrivalDateTime) },
     { label: 'Lugares totais', value: event?.totalSeats },
     { label: 'Lugares disponíveis', value: event?.availableSeats },
-    { label: 'Preço', value: formatCurrency(event?.tour?.priceCents) },
+    { label: 'Preço', value: formatCurrency(event?.tour?.priceCents || 0) },
   ];
 
   return (
