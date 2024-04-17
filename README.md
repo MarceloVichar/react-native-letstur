@@ -37,6 +37,7 @@ $> yarn ios
 ![Modelagem do banco de dados](docs/modelagem-banco.png)
 
 ## Planejamento
+
 | Atividade | Tempo previsto | Data limite |
 | ----------- | ----------- | ----------- |
 | Configuração de roteamento     | 3 dias      | 28/04/2024 |
@@ -49,3 +50,17 @@ $> yarn ios
 | Visualização de detalhes de vendas    | 1 dia     | 26/05/2024 |
 | Cancelamento de venda ainda não confirmada    | 1 dias      | 26/05/2024 |
 | Formulário de vendas    | 2 semanas      |16/06/2024 |
+
+## Atividades
+- [x] Configuração Expo Router
+- [x] Configuração Eslint
+- [x] Configuração React Native Elements
+- [x] Configuração NativeWind
+- [x] Implementação do layout da área de autenticação (Stack)
+- [x] Implementação da interface estática de login
+- [x] Implementação do layout da área autenticada (Drawer)
+- [x] Implementação da interface estática de eventos (Listagem + detalhes)
+- [x] Implementação da interface estática de vendas (Listagem + detalhes + criação de vendas)
+- [ ] Implementação da lógica de autenticação
+- [ ] Implementação da l[ogica de eventos
+- [ ] Implementação da lógica de vendas
