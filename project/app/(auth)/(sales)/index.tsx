@@ -1,4 +1,5 @@
-import { SearchBar } from '@rneui/themed';
+import { Button, SearchBar } from '@rneui/themed';
+import { router } from 'expo-router';
 import React from 'react';
 import { ScrollView, View } from 'react-native';
 
@@ -11,7 +12,10 @@ export default function Events() {
 
   return (
     <View className="flex-1">
-      <SearchBar placeholder="Buscar por cliente" className="mb-4" lightTheme />
+      <View>
+        <Button title="Nova venda" type="clear" onPress={() => router.push('/(sales)/create')} />
+        <SearchBar placeholder="Buscar por cliente" className="mb-4" lightTheme />
+      </View>
       <ScrollView className="mb-4">
         {sales.map((sale, index) => (
           <SaleCard key={index} sale={sale} />

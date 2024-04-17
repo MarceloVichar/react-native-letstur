@@ -53,8 +53,8 @@ export default function DetailedSaleCard({ sale }: DetailedEventCardProps) {
 
   return (
     <View>
-      {areas.map((area, index) => (
-        <Card key={index}>
+      {areas.map((area, i) => (
+        <Card key={i}>
           <Card.Title>{area.title}</Card.Title>
           <Card.Divider />
           {area.data.map((info, index) => (
@@ -66,15 +66,15 @@ export default function DetailedSaleCard({ sale }: DetailedEventCardProps) {
       ))}
       <Card>
         <Card.Title>Eventos</Card.Title>
-        {sale?.events?.map((event, index) => (
-          <>
+        {sale?.events?.map((event, eIndex) => (
+          <View key={eIndex}>
             <Card.Divider />
             {eventSaleInfos(event).map((info, index) => (
               <Text key={index} style={{ marginBottom: 20 }}>
                 {info.label}: {info.value}
               </Text>
             ))}
-          </>
+          </View>
         ))}
       </Card>
     </View>
