@@ -1,7 +1,9 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Button, SearchBar } from '@rneui/themed';
-import { router } from 'expo-router';
+import { router, useFocusEffect } from 'expo-router';
 import React from 'react';
 import { ScrollView, View } from 'react-native';
+import { showMessage } from 'react-native-flash-message';
 
 import SaleCard from '../../../components/sales/SaleCard';
 import { SaleData } from '../../../data/SaleData';
@@ -9,6 +11,19 @@ import SalesMock from '../../../mocks/SalesMock';
 
 export default function Events() {
   const sales: SaleData[] = SalesMock;
+
+  useFocusEffect(() => {
+    const checkToken = async () => {
+      const token = await AsyncStorage.getItem('token');
+      console.log(token);
+      if (!token) {
+        showMessage({ message: 'Você não está autenticado.', type: 'warning' });
+        router.push('/');
+      }
+    };
+
+    checkToken();
+  });
 
   return (
     <View className="flex-1">

@@ -4,7 +4,16 @@ import { Drawer } from 'expo-router/drawer';
 import React from 'react';
 import { Image, View } from 'react-native';
 
+import { useAuthStore } from '../../stores/authStore';
+
 function CustomDrawerContent(props: any) {
+  const { clearToken } = useAuthStore();
+
+  const handleLogout = async () => {
+    clearToken();
+    router.push('/');
+  };
+
   return (
     <DrawerContentScrollView {...props}>
       <View className="flex w-full items-center">
@@ -17,7 +26,7 @@ function CustomDrawerContent(props: any) {
       <DrawerItemList {...props} />
       <DrawerItem
         label="Sair"
-        onPress={() => router.push('/')}
+        onPress={() => handleLogout()}
         labelStyle={{ color: 'red' }}
         style={{ backgroundColor: 'white', marginTop: 24 }}
       />
