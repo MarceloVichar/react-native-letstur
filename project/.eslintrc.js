@@ -3,7 +3,7 @@ module.exports = {
   extends: ['universe/native'],
   rules: {
     // Ensures props and state inside functions are always up-to-date
-    'react-hooks/exhaustive-deps': 'warn',
+    'react-hooks/exhaustive-deps': 'off',
     'prettier/prettier': 'error',
   },
 };

@@ -1,13 +1,13 @@
 import { Card, ListItem } from '@rneui/themed';
 import React from 'react';
-import { ScrollView, TouchableOpacity, View } from 'react-native';
+import { ScrollView, TouchableOpacity } from 'react-native';
 
-import { EventData } from '../../../../data/EventData';
 import EventsMock from '../../../../mocks/EventsMock';
+import { EventType } from '../../../../schemas/event';
 import { formatCurrency, formatDateTime } from '../../../../utils/helpers';
 
 interface EventItemProps {
-  event: EventData;
+  event: EventType;
   nextStep: (event: any) => void;
 }
 
