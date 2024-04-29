@@ -1,14 +1,31 @@
+import DetailedSaleCard from '@components/sales/DetailedSaleCard';
+import { Sale, SaleSchema } from '@schemas/sale';
+import axiosInstance from '@utils/axios-instance';
 import { useLocalSearchParams } from 'expo-router';
+import { useEffect, useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
-
-import DetailedSaleCard from '../../../components/sales/DetailedSaleCard';
-import { SaleData } from '../../../data/SaleData';
-import SalesMock from '../../../mocks/SalesMock';
+import { showMessage } from 'react-native-flash-message';
 
 export default function SaleDetail() {
   const params = useLocalSearchParams();
   const saleId = params.id;
-  const sale: SaleData | undefined = SalesMock.find((e) => saleId === e.id?.toString());
+  const [sale, setSale] = useState<Sale | undefined>(undefined);
+
+  useEffect(() => {
+    fetchEvent();
+  }, []);
+
+  const fetchEvent = async () => {
+    await axiosInstance
+      .get(`/company/sales/${saleId}`)
+      .then((response) => {
+        const event = SaleSchema.parse(response.data);
+        setSale(event);
+      })
+      .catch(() => {
+        showMessage({ message: 'Erro ao buscar evento.', type: 'danger' });
+      });
+  };
 
   if (!sale) {
     return (

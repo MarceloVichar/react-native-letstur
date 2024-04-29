@@ -1,11 +1,10 @@
+import DetailedEventCard from '@components/events/DetailedEventCard';
+import { EventSchema, EventType } from '@schemas/event';
+import axiosInstance from '@utils/axios-instance';
 import { useLocalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import { showMessage } from 'react-native-flash-message';
-
-import DetailedEventCard from '../../../components/events/DetailedEventCard';
-import { EventSchema, EventType } from '../../../schemas/event';
-import axiosInstance from '../../../utils/axios-intance';
 
 export default function EventDetail() {
   const params = useLocalSearchParams();

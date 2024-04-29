@@ -1,10 +1,9 @@
+import ClientStep from '@components/sales/create/steps/ClientStep';
+import EventPickStep from '@components/sales/create/steps/EventPickStep';
+import PassengersStep from '@components/sales/create/steps/PassengersStep';
+import QuantityPickStep from '@components/sales/create/steps/QuantityStep';
 import React, { useEffect, useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
-
-import ClientStep from '../../../components/sales/create/steps/ClientStep';
-import EventPickStep from '../../../components/sales/create/steps/EventPickStep';
-import PassengersStep from '../../../components/sales/create/steps/PassengersStep';
-import QuantityPickStep from '../../../components/sales/create/steps/QuantityStep';
 
 export default function CreateSale() {
   const nextStep = () => {

@@ -1,9 +1,8 @@
 import { Button, Icon, Input } from '@rneui/themed';
+import { loginSchema } from '@schemas/auth';
+import { useAuthStore } from '@stores/authStore';
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
-
-import { loginSchema } from '../../schemas/auth';
-import { useAuthStore } from '../../stores/authStore';
 
 export default function LoginForm() {
   const [credentials, setCredentials] = useState({

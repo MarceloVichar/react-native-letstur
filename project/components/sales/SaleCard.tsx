@@ -1,13 +1,12 @@
 import { Badge, BottomSheet, Card, Icon, ListItem } from '@rneui/themed';
+import { Sale } from '@schemas/sale';
+import { formatCurrency, formatDateTime } from '@utils/helpers';
 import { router } from 'expo-router';
 import React, { useState } from 'react';
 import { Text, View } from 'react-native';
 
-import { SaleData } from '../../data/SaleData';
-import { formatCurrency, formatDateTime } from '../../utils/helpers';
-
 interface EventCardProps {
-  sale: SaleData;
+  sale: Sale;
 }
 
 export default function SaleCard({ sale }: EventCardProps) {

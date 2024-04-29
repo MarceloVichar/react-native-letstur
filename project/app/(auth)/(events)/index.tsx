@@ -1,13 +1,12 @@
+import EventCard from '@components/events/EventCard';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SearchBar } from '@rneui/themed';
+import { EventsType, EventType } from '@schemas/event';
+import axiosInstance from '@utils/axios-instance';
 import { router, useFocusEffect } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import { ScrollView, View } from 'react-native';
 import { showMessage } from 'react-native-flash-message';
-
-import EventCard from '../../../components/events/EventCard';
-import { EventsType, EventType } from '../../../schemas/event';
-import axiosInstance from '../../../utils/axios-intance';
 
 export default function Events() {
   const [events, setEvents] = useState<EventType[]>([]);

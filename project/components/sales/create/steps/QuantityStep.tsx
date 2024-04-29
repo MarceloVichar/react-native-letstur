@@ -1,9 +1,9 @@
+import DetailedEventCard from '@components/events/DetailedEventCard';
 import { Button, Text } from '@rneui/themed';
 import React, { useState } from 'react';
 import { ScrollView, View } from 'react-native';
 
 import EventsMock from '../../../../mocks/EventsMock';
-import DetailedEventCard from '../../../events/DetailedEventCard';
 
 interface QuantityPickStepProps {
   nextStep: () => void;

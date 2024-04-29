@@ -1,10 +1,9 @@
 import { DrawerContentScrollView, DrawerItem, DrawerItemList } from '@react-navigation/drawer';
+import { useAuthStore } from '@stores/authStore';
 import { router } from 'expo-router';
 import { Drawer } from 'expo-router/drawer';
 import React from 'react';
 import { Image, View } from 'react-native';
-
-import { useAuthStore } from '../../stores/authStore';
 
 function CustomDrawerContent(props: any) {
   const { clearToken } = useAuthStore();

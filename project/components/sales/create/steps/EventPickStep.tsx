@@ -1,10 +1,10 @@
 import { Card, ListItem } from '@rneui/themed';
+import { EventType } from '@schemas/event';
+import { formatCurrency, formatDateTime } from '@utils/helpers';
 import React from 'react';
 import { ScrollView, TouchableOpacity } from 'react-native';
 
 import EventsMock from '../../../../mocks/EventsMock';
-import { EventType } from '../../../../schemas/event';
-import { formatCurrency, formatDateTime } from '../../../../utils/helpers';
 
 interface EventItemProps {
   event: EventType;

@@ -1,10 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Login, loginResponseSchema } from '@schemas/auth';
+import axiosInstance from '@utils/axios-instance';
 import { router } from 'expo-router';
 import { showMessage } from 'react-native-flash-message';
 import { create } from 'zustand';
-
-import { Login, loginResponseSchema } from '../schemas/auth';
-import axiosInstance from '../utils/axios-intance';
 
 type AuthState = {
   token: string | null;
