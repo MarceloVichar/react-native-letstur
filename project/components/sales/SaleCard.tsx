@@ -39,7 +39,6 @@ export default function SaleCard({ sale, refresh }: EventCardProps) {
         refresh();
       })
       .catch((err) => {
-        console.dir(err);
         showMessage({ message: 'Erro ao remover venda.', type: 'danger' });
       });
   };

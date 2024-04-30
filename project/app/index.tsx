@@ -32,7 +32,7 @@ export default function Index() {
           resizeMode="contain"
           className="w-32 h-auto"
         />
-        <View className="flex-1 w-full bg-white p-4 rounded-lg">
+        <View className="h-[280px] w-full bg-white  p-4 rounded-lg">
           <LoginForm />
         </View>
       </ImageBackground>
