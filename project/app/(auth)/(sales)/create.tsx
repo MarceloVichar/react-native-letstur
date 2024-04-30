@@ -1,12 +1,31 @@
+import ClientStep from '@components/sales/create/steps/ClientStep';
+import EventPickStep from '@components/sales/create/steps/EventPickStep';
+import PassengersStep from '@components/sales/create/steps/PassengersStep';
+import QuantityPickStep from '@components/sales/create/steps/QuantityStep';
+import { CreateSale, CreateSaleSchema } from '@schemas/sale';
+import axiosInstance from '@utils/axios-instance';
+import { router } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
+import { showMessage } from 'react-native-flash-message';
 
-import ClientStep from '../../../components/sales/create/steps/ClientStep';
-import EventPickStep from '../../../components/sales/create/steps/EventPickStep';
-import PassengersStep from '../../../components/sales/create/steps/PassengersStep';
-import QuantityPickStep from '../../../components/sales/create/steps/QuantityStep';
+export default function CreateSalePage() {
+  const [saleData, setSaleData] = useState<CreateSale>({
+    customer: {
+      name: '',
+      document: '',
+      email: '',
+      phone: '',
+    },
+    eventSales: [],
+  });
 
-export default function CreateSale() {
+  const [sending, setSending] = useState(false);
+
+  useEffect(() => {
+    console.log('log no form', saleData);
+  }, [saleData]);
+
   const nextStep = () => {
     setCurrentStepIndex(currentStepIndex + 1);
   };
@@ -15,28 +34,43 @@ export default function CreateSale() {
     setCurrentStepIndex(currentStepIndex - 1);
   };
 
-  const onSubmit = () => {};
+  const onSubmit = () => {
+    const data = CreateSaleSchema.parse(saleData);
+    setSending(true);
+    axiosInstance
+      .post('/company/sales', data)
+      .then(() => {
+        showMessage({ message: 'Venda criada com sucesso', type: 'success' });
+        router.push('/(auth)/(sales)');
+      })
+      .catch(() => {
+        showMessage({ message: 'Erro ao criar venda', type: 'danger' });
+      })
+      .finally(() => {
+        setSending(false);
+      });
+  };
 
   const steps = [
     {
       title: 'Evento',
       component: (props: any) => <EventPickStep {...props} />,
-      props: { nextStep },
+      props: { nextStep, saleData, updateSaleData: setSaleData },
     },
     {
       title: 'Quantidade',
       component: (props: any) => <QuantityPickStep {...props} />,
-      props: { nextStep, previousStep },
+      props: { nextStep, previousStep, saleData, updateSaleData: setSaleData },
     },
     {
       title: 'Cliente',
       component: (props: any) => <ClientStep {...props} />,
-      props: { nextStep, previousStep },
+      props: { nextStep, previousStep, saleData, updateSaleData: setSaleData },
     },
     {
       title: 'Passageiros',
       component: (props: any) => <PassengersStep {...props} />,
-      props: { previousStep, onSubmit },
+      props: { previousStep, onSubmit, saleData, updateSaleData: setSaleData, sending },
     },
   ];
 

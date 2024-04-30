@@ -1,12 +1,14 @@
+import LoginForm from '@components/auth/LoginForm';
+import useNavigationExitOnBack from '@hooks/useNavigationExitOnBack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { router, useFocusEffect } from 'expo-router';
 import React from 'react';
 import { Image, ImageBackground, View } from 'react-native';
 import { showMessage } from 'react-native-flash-message';
 
-import LoginForm from '../components/auth/LoginForm';
-
 export default function Index() {
+  useNavigationExitOnBack();
+
   useFocusEffect(() => {
     const checkToken = async () => {
       const token = await AsyncStorage.getItem('token');
