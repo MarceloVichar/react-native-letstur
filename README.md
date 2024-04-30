@@ -22,11 +22,11 @@ $> yarn ios
 ```
 
 ## Funcionalidades
-- [ ] Autenticação (Login de operadores cadastrados via admin)
-- [ ] Visualização de eventos próximos e seus detalhes
+- [x] Autenticação (Login de operadores cadastrados via admin)
+- [x] Visualização de eventos próximos e seus detalhes
 - [x] Visualização de vendas feitas pelo operador autenticado
-- [ ] Cadastro de vendas de vouchers para eventos
-- [ ] Cancelamento de venda não confirmada via admin
+- [x] Cadastro de vendas de vouchers para eventos
+- [x] Cancelamento de venda não confirmada via admin
 
 ## Protótipos de tela
 
@@ -61,6 +61,6 @@ $> yarn ios
 - [x] Implementação do layout da área autenticada (Drawer)
 - [x] Implementação da interface estática de eventos (Listagem + detalhes)
 - [x] Implementação da interface estática de vendas (Listagem + detalhes + criação de vendas)
-- [ ] Implementação da lógica de autenticação
-- [ ] Implementação da l[ogica de eventos
-- [ ] Implementação da lógica de vendas
+- [x] Implementação da lógica de autenticação
+- [x] Implementação da l[ogica de eventos
+- [x] Implementação da lógica de vendas
