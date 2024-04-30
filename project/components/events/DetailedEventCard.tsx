@@ -1,12 +1,11 @@
 import { Card } from '@rneui/themed';
+import { EventType } from '@schemas/event';
+import { formatCurrency, formatDateTime } from '@utils/helpers';
 import React from 'react';
 import { Text } from 'react-native';
 
-import { EventData } from '../../data/EventData';
-import { formatCurrency, formatDateTime } from '../../utils/helpers';
-
 interface DetailedEventCardProps {
-  event: EventData;
+  event: EventType;
 }
 
 export default function DetailedEventCard({ event }: DetailedEventCardProps) {

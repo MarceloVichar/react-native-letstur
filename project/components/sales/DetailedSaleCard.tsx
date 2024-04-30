@@ -1,12 +1,11 @@
 import { Badge, Card } from '@rneui/themed';
+import { EventSale, Sale } from '@schemas/sale';
+import { formatCurrency, formatDateTime } from '@utils/helpers';
 import React from 'react';
 import { Text, View } from 'react-native';
 
-import { EventSale, SaleData } from '../../data/SaleData';
-import { formatCurrency, formatDateTime } from '../../utils/helpers';
-
 interface DetailedEventCardProps {
-  sale: SaleData;
+  sale: Sale;
 }
 
 export default function DetailedSaleCard({ sale }: DetailedEventCardProps) {
@@ -43,11 +42,11 @@ export default function DetailedSaleCard({ sale }: DetailedEventCardProps) {
   const eventSaleInfos = (eventSale: EventSale) => {
     return [
       { label: 'Quantidade', value: eventSale.quantity },
-      { label: 'Valor total', value: formatCurrency(eventSale.totalValueCents) },
+      { label: 'Valor total', value: formatCurrency(eventSale.totalValueCents || 0) },
       { label: 'ID do evento', value: eventSale.event?.id },
       { label: 'Passeio', value: eventSale.event?.tour?.name },
-      { label: 'Partida', value: formatDateTime(eventSale.event?.departureDateTime) },
-      { label: 'Retorno', value: formatDateTime(eventSale.event?.arrivalDateTime) },
+      { label: 'Partida', value: formatDateTime(eventSale?.event?.departureDateTime || '') },
+      { label: 'Retorno', value: formatDateTime(eventSale?.event?.arrivalDateTime || '') },
     ];
   };
 

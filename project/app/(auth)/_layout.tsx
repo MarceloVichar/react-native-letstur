@@ -1,10 +1,18 @@
 import { DrawerContentScrollView, DrawerItem, DrawerItemList } from '@react-navigation/drawer';
+import { useAuthStore } from '@stores/authStore';
 import { router } from 'expo-router';
 import { Drawer } from 'expo-router/drawer';
 import React from 'react';
 import { Image, View } from 'react-native';
 
 function CustomDrawerContent(props: any) {
+  const { clearToken } = useAuthStore();
+
+  const handleLogout = async () => {
+    clearToken();
+    router.push('/');
+  };
+
   return (
     <DrawerContentScrollView {...props}>
       <View className="flex w-full items-center">
@@ -17,7 +25,7 @@ function CustomDrawerContent(props: any) {
       <DrawerItemList {...props} />
       <DrawerItem
         label="Sair"
-        onPress={() => router.push('/')}
+        onPress={() => handleLogout()}
         labelStyle={{ color: 'red' }}
         style={{ backgroundColor: 'white', marginTop: 24 }}
       />
@@ -33,6 +41,9 @@ export default function OperatorArea() {
         headerStyle: {
           backgroundColor: '#33C8B6',
         },
+        headerTintColor: 'white',
+        drawerActiveBackgroundColor: '#33C8B6',
+        drawerActiveTintColor: 'white',
       }}>
       <Drawer.Screen
         name="(events)"

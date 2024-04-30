@@ -1,13 +1,12 @@
 import { Button, Card } from '@rneui/themed';
+import { EventType } from '@schemas/event';
+import { formatCurrency, formatDateTime } from '@utils/helpers';
 import { router } from 'expo-router';
 import React from 'react';
 import { Text } from 'react-native';
 
-import { EventData } from '../../data/EventData';
-import { formatCurrency, formatDateTime } from '../../utils/helpers';
-
 interface EventCardProps {
-  event: EventData;
+  event: EventType;
 }
 
 export default function EventCard({ event }: EventCardProps) {

@@ -1,9 +1,26 @@
+import LoginForm from '@components/auth/LoginForm';
+import useNavigationExitOnBack from '@hooks/useNavigationExitOnBack';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { router, useFocusEffect } from 'expo-router';
 import React from 'react';
 import { Image, ImageBackground, View } from 'react-native';
-
-import LoginForm from '../components/auth/LoginForm';
+import { showMessage } from 'react-native-flash-message';
 
 export default function Index() {
+  useNavigationExitOnBack();
+
+  useFocusEffect(() => {
+    const checkToken = async () => {
+      const token = await AsyncStorage.getItem('token');
+      if (token) {
+        showMessage({ message: 'Você já está autenticado.', type: 'warning' });
+        router.push('/(auth)/(events)');
+      }
+    };
+
+    checkToken();
+  });
+
   return (
     <View className="flex-1">
       <ImageBackground
@@ -15,7 +32,7 @@ export default function Index() {
           resizeMode="contain"
           className="w-32 h-auto"
         />
-        <View className="w-full bg-base-200 p-4 rounded-lg">
+        <View className="h-[280px] w-full bg-white  p-4 rounded-lg">
           <LoginForm />
         </View>
       </ImageBackground>

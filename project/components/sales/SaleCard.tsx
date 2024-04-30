@@ -1,16 +1,18 @@
 import { Badge, BottomSheet, Card, Icon, ListItem } from '@rneui/themed';
+import { Sale } from '@schemas/sale';
+import axiosInstance from '@utils/axios-instance';
+import { formatCurrency, formatDateTime } from '@utils/helpers';
 import { router } from 'expo-router';
 import React, { useState } from 'react';
 import { Text, View } from 'react-native';
-
-import { SaleData } from '../../data/SaleData';
-import { formatCurrency, formatDateTime } from '../../utils/helpers';
+import { showMessage } from 'react-native-flash-message';
 
 interface EventCardProps {
-  sale: SaleData;
+  sale: Sale;
+  refresh: () => void;
 }
 
-export default function SaleCard({ sale }: EventCardProps) {
+export default function SaleCard({ sale, refresh }: EventCardProps) {
   const [isDeleting, setIsDeleting] = useState(false);
 
   const getStatusBadge = (status: string) => {
@@ -28,6 +30,19 @@ export default function SaleCard({ sale }: EventCardProps) {
     { label: 'Status', value: getStatusBadge(sale?.status) },
   ];
 
+  const handleDelete = async (saleId: number) => {
+    await axiosInstance
+      .delete(`/company/sales/${saleId}`)
+      .then(() => {
+        showMessage({ message: 'Venda removida com sucesso.', type: 'success' });
+        setIsDeleting(false);
+        refresh();
+      })
+      .catch((err) => {
+        showMessage({ message: 'Erro ao remover venda.', type: 'danger' });
+      });
+  };
+
   return (
     <Card>
       <Card.Title>{sale?.voucher}</Card.Title>
@@ -42,10 +57,12 @@ export default function SaleCard({ sale }: EventCardProps) {
           name="visibility"
           onPress={() => router.push({ pathname: '(sales)/details', params: { id: sale?.id } })}
         />
-        <Icon name="delete" onPress={() => setIsDeleting(true)} />
+        {sale?.status === 'pending' && <Icon name="delete" onPress={() => setIsDeleting(true)} />}
       </View>
       <BottomSheet isVisible={isDeleting} onBackdropPress={() => setIsDeleting(false)}>
-        <ListItem containerStyle={{ backgroundColor: 'red' }}>
+        <ListItem
+          onPress={() => handleDelete(sale.id || 0)}
+          containerStyle={{ backgroundColor: 'red' }}>
           <ListItem.Content>
             <ListItem.Title style={{ color: 'white' }}>Remover venda</ListItem.Title>
           </ListItem.Content>
