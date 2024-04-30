@@ -41,6 +41,9 @@ export default function OperatorArea() {
         headerStyle: {
           backgroundColor: '#33C8B6',
         },
+        headerTintColor: 'white',
+        drawerActiveBackgroundColor: '#33C8B6',
+        drawerActiveTintColor: 'white',
       }}>
       <Drawer.Screen
         name="(events)"

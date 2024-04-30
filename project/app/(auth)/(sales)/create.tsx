@@ -22,10 +22,6 @@ export default function CreateSalePage() {
 
   const [sending, setSending] = useState(false);
 
-  useEffect(() => {
-    console.log('log no form', saleData);
-  }, [saleData]);
-
   const nextStep = () => {
     setCurrentStepIndex(currentStepIndex + 1);
   };
@@ -41,7 +37,7 @@ export default function CreateSalePage() {
       .post('/company/sales', data)
       .then(() => {
         showMessage({ message: 'Venda criada com sucesso', type: 'success' });
-        router.push('/(auth)/(sales)');
+        router.push('/(auth)/(sales)/sales-index');
       })
       .catch(() => {
         showMessage({ message: 'Erro ao criar venda', type: 'danger' });
