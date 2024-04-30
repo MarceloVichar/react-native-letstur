@@ -1,16 +1,20 @@
 import EventCard from '@components/events/EventCard';
+import useNavigationExitOnBack from '@hooks/useNavigationExitOnBack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SearchBar } from '@rneui/themed';
 import { EventsType, EventType } from '@schemas/event';
 import axiosInstance from '@utils/axios-instance';
 import { router, useFocusEffect } from 'expo-router';
 import React, { useEffect, useState } from 'react';
-import { ScrollView, View } from 'react-native';
+import { ActivityIndicator, ScrollView, View } from 'react-native';
 import { showMessage } from 'react-native-flash-message';
 
 export default function Events() {
+  useNavigationExitOnBack();
+
   const [events, setEvents] = useState<EventType[]>([]);
   const [search, setSearch] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(true);
 
   useFocusEffect(() => {
     const checkToken = async () => {
@@ -33,6 +37,7 @@ export default function Events() {
   }, [search]);
 
   const fetchEvents = async () => {
+    setLoading(true);
     await axiosInstance
       .get('/company/events', {
         params: {
@@ -49,6 +54,9 @@ export default function Events() {
       })
       .catch(() => {
         showMessage({ message: 'Erro ao buscar eventos.', type: 'danger' });
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
@@ -62,9 +70,11 @@ export default function Events() {
         onChangeText={(value) => setSearch(value)}
       />
       <ScrollView className="mb-4">
-        {events.map((event, index) => (
-          <EventCard key={index} event={event} />
-        ))}
+        {loading ? (
+          <ActivityIndicator size="large" className="my-12" />
+        ) : (
+          events.map((event, index) => <EventCard key={index} event={event} />)
+        )}
       </ScrollView>
     </View>
   );

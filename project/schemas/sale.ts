@@ -1,25 +1,23 @@
 import { EventSchema } from '@schemas/event';
 import { z } from 'zod';
 
-const CustomerSchema = z.object({
-  name: z.string(),
-  document: z.string(),
+export const CustomerSchema = z.object({
+  name: z.string().min(1),
+  document: z.string().min(1),
   phone: z.string().nullable().optional(),
   email: z.string().email().nullable().optional(),
 });
 
-type Customer = z.infer<typeof CustomerSchema>;
+export type Customer = z.infer<typeof CustomerSchema>;
 
 const PassengerSchema = z.object({
   name: z.string().optional().nullable(),
   document: z.string().optional().nullable(),
 });
 
-type Passenger = z.infer<typeof PassengerSchema>;
-
 export const EventSaleSchema = z.object({
   quantity: z.number(),
-  totalValueCents: z.number().nullable(),
+  totalValueCents: z.number().nullable().optional(),
   passengers: z.array(PassengerSchema),
   eventId: z.number().optional(),
   event: z.optional(EventSchema),

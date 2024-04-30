@@ -3,7 +3,7 @@ import axios from 'axios';
 import { router } from 'expo-router';
 
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:81/api',
+  baseURL: 'https://a907-2804-f74-4115-3200-2550-32f8-2f96-ac4b.ngrok-free.app/api',
   headers: {
     'Content-Type': 'application/json',
     Accept: 'application/json',
@@ -15,6 +15,7 @@ axiosInstance.interceptors.request.use(async (config) => {
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
+  config.headers['ngrok-skip-browser-warning'] = 'true';
   return config;
 });
 

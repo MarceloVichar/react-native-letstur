@@ -1,16 +1,20 @@
 import SaleCard from '@components/sales/SaleCard';
+import useNavigationExitOnBack from '@hooks/useNavigationExitOnBack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Button, SearchBar } from '@rneui/themed';
 import { Sale, Sales } from '@schemas/sale';
 import axiosInstance from '@utils/axios-instance';
 import { router, useFocusEffect } from 'expo-router';
 import React, { useEffect, useState } from 'react';
-import { ScrollView, View } from 'react-native';
+import { ActivityIndicator, ScrollView, View } from 'react-native';
 import { showMessage } from 'react-native-flash-message';
 
 export default function Events() {
+  useNavigationExitOnBack();
+
   const [sales, setSales] = useState<Sale[]>([]);
   const [search, setSearch] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(true);
 
   useFocusEffect(() => {
     const checkToken = async () => {
@@ -33,6 +37,7 @@ export default function Events() {
   }, [search]);
 
   const fetchEvents = async () => {
+    setLoading(true);
     await axiosInstance
       .get('/company/sales', {
         params: {
@@ -48,6 +53,9 @@ export default function Events() {
       })
       .catch(() => {
         showMessage({ message: 'Erro ao buscar vendas.', type: 'danger' });
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
@@ -64,9 +72,11 @@ export default function Events() {
         />
       </View>
       <ScrollView className="mb-4">
-        {sales.map((sale, index) => (
-          <SaleCard key={index} sale={sale} />
-        ))}
+        {loading ? (
+          <ActivityIndicator size="large" className="my-12" />
+        ) : (
+          sales.map((sale, index) => <SaleCard key={index} sale={sale} refresh={fetchEvents} />)
+        )}
       </ScrollView>
     </View>
   );
