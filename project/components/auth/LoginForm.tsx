@@ -6,8 +6,8 @@ import { View } from 'react-native';
 
 export default function LoginForm() {
   const [credentials, setCredentials] = useState({
-    email: 'company_operator@letsgrow.com.br',
-    password: '12345678',
+    email: '',
+    password: '',
   });
   const [sending, setSending] = useState(false);
   const [isValid, setIsValid] = useState(false);
